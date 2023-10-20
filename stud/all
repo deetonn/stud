@@ -1,0 +1,36 @@
+#ifndef _STUD
+
+#include "clone.hpp"
+#include "defer.hpp"
+#include "forward.hpp"
+#include "identity.hpp"
+#include "option.hpp"
+#include "panic.hpp"
+#include "result.hpp"
+#include "vector.hpp"
+#include "stddef.hpp"
+#include "stack.hpp"
+#include "array.hpp"
+#include "algorithm.hpp"
+#include "io.hpp"
+#include "os.hpp"
+#include "utility.hpp"
+#include "memory.hpp"
+#include "type_traits.hpp"
+
+_STD_API_BEGIN
+
+static constexpr const char version[] = "0.1.1";
+
+// this function is not required to be called. It's for CLI applications
+// that want output regarding their dependencies.
+#define STUD_INIT() std::cerr << std::format("[stud v{}] initialized.", stud::version) << '\n'
+#define let auto
+
+_STD_API_END
+
+#ifndef _STUD
+#define _STUD
+#endif // _STUD
+
+#endif
