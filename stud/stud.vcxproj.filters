@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Os_Subsections">
+      <UniqueIdentifier>{991de208-b904-43b6-b7fd-7bc2d5712553}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stud.cpp">
@@ -75,6 +78,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="type_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_os_file_info.hpp">
+      <Filter>Header Files\Os_Subsections</Filter>
+    </ClInclude>
+    <ClInclude Include="_os_environment.hpp">
+      <Filter>Header Files\Os_Subsections</Filter>
+    </ClInclude>
+    <ClInclude Include="time.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="string.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

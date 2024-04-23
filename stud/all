@@ -17,14 +17,18 @@
 #include "utility.hpp"
 #include "memory.hpp"
 #include "type_traits.hpp"
+#include "time.hpp"
+#include "string.hpp"
 
 _STD_API_BEGIN
 
-static constexpr const char version[] = "0.1.1";
+#define __stud_version "0.1.2"
+
+#define STUD_STRING "STUD v" __stud_version " built at " __TIME__ " on " __DATE__
 
 // this function is not required to be called. It's for CLI applications
 // that want output regarding their dependencies.
-#define STUD_INIT() std::cerr << std::format("[stud v{}] initialized.", stud::version) << '\n'
+#define STUD_INIT() std::cerr << std::format("[{}] initialized.", STUD_STRING) << '\n'
 #define let auto
 
 _STD_API_END

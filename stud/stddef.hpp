@@ -35,12 +35,15 @@ _NODISCARD _STD_API bool memcpy(Into* dest, const From* from) noexcept {
 // disable warnings for narrowing conversions here, 
 // we already check against above, aswell as in memcpy_s
 // so there is no worry.
-#pragma warning(disable : 4244)
-#pragma warning(push)
+_STD_DISABLE_WARNINGS
         dest[offset] = from[offset];
-#pragma warning(pop)
+_STD_ENABLE_WARNINGS
     }
     return true;
+}
+
+_NODISCARD _STD_INLINE void memcpy_unsafe(void* dest, void* from, std::size_t count) noexcept {
+    DISCARD(std::memcpy(dest, from, count));
 }
 
 template<class Into, class From>
@@ -56,6 +59,23 @@ _STD_API void copy_to(T dest[N], It container) noexcept {
         dest[offset++] = element;
     }
 }
+
+template<class To, class From>
+_STD_API To* force_cast(From* data, To* storage = NULL) noexcept {
+    // Do literally everything we can to force this data type into an instance of To*
+    if constexpr (sizeof(To) > sizeof(From)) {
+        return reinterpret_cast<To*>(reinterpret_cast<char*>(data));
+    }
+    else {
+        // The type we are converting to is smaller
+        memcpy_unsafe(storage, data, sizeof(To));
+        return storage;
+    }
+
+    return NULL;
+}
+
+
 
 _STD_API_END
 

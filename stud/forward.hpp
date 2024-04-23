@@ -6,9 +6,18 @@
 #define _STD_DETAIL_API namespace stud::__detail {
 #define _STD_API_END }
 
+#define _STD_INLINE inline
+#define _STD_CONSTEXPR constexpr
+
 #define _STD_API inline constexpr
 
+#define _STD_DISABLED_WARNINGS_LIST 4244
+
+#define _STD_DISABLE_WARNINGS __pragma(warning (disable : _STD_DISABLED_WARNINGS_LIST)); __pragma(warning (push));
+#define _STD_ENABLE_WARNINGS __pragma(warning (pop));
+
 #define _STD_NODISCARD [[nodiscard]]
+#define _STD_NORETURN [[noreturn]]
 
 #define _STD_NOEXCEPT(expr) noexcept(noexcept(expr))
 
@@ -113,6 +122,16 @@ _STD_API bool is_system(System system) noexcept {
 #define _STD_MAKE_NONCOPYABLE(type) _STD_API type(const type&) noexcept = delete; \
 _STD_API type& operator=(const type&) noexcept = delete
 #define _STD_MAKE_NONMOVEABLE(type) _STD_API type(type&&) noexcept = delete;
+
+// The case of a string
+enum class Case {
+    // All lowercase - all lowercase
+    Lower,
+    // Words are correctly capitalized
+    Capitalized,
+    // All uppercase - ALL UPPERCASE
+    Upper,
+};
 
 _STD_API_END
 

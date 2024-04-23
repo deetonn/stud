@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -147,9 +147,13 @@
     <ClInclude Include="result.hpp" />
     <ClInclude Include="stack.hpp" />
     <ClInclude Include="stddef.hpp" />
+    <ClInclude Include="string.hpp" />
+    <ClInclude Include="time.hpp" />
     <ClInclude Include="type_traits.hpp" />
     <ClInclude Include="utility.hpp" />
     <ClInclude Include="vector.hpp" />
+    <ClInclude Include="_os_environment.hpp" />
+    <ClInclude Include="_os_file_info.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="all">

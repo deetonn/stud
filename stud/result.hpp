@@ -108,6 +108,9 @@ class _STD_NODISCARD Result {
 private:
     std::variant<T, E> m_variant;
 public:
+    using OkayT = T;
+    using BadT = E;
+
     _STD_API Result() noexcept = delete;
     _STD_API Result(T&& success) noexcept {
         m_variant = std::move(success);
@@ -124,6 +127,13 @@ public:
     }
 
     _NODISCARD _STD_API T get() const noexcept {
+        auto ptr = std::get_if<T>(&m_variant);
+        panic(IF_NOT(ptr), "Cannot \"get\" result value, it is an error.");
+        return *ptr;
+    }
+    _NODISCARD _STD_API T get_or(T&& _Default) const noexcept {
+        if (is_err())
+            return std::forward<T>(_Default);
         return std::move(std::get<0>(m_variant));
     }
     _NODISCARD _STD_API E get_err() const noexcept {
@@ -140,6 +150,11 @@ public:
 
 struct placeholder {};
 static constexpr placeholder nothing = {};
+
+template <class R, class T = typename R::OkayT>
+T force_unwrap(R* res) {
+    return res->get();
+}
 
 _STD_API_END
 

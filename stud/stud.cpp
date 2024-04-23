@@ -2,8 +2,9 @@
 
 #include <cstdio>
 
-int main(int argc, const char* const* const argv)
+using namespace stud;
+
+int main(int argc, char** argv)
 {
-    std::printf("Hello, %d", 1);
-    stud::println("Hello, {}!", 1);
+	return 0;
 }

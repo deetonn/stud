@@ -83,7 +83,10 @@ static constexpr __forceinline void panic(
 #define IF(condition) stud::PanicExpr {condition, #condition}
 #define NOT(condition) stud::PanicExpr { !(condition), "!(" #condition ")" }
 #define IF_NOT(condition) NOT(condition)
-#define ALWAYS(...) stud::PanicExpr { !false, "(ALWAYS PANICS)" }
+#define ALWAYS(...) stud::PanicExpr { !false, "(Debug-Assertion)" }
+
+#define IF_EQUAL(left, right) stud::PanicExpr {left == right, "(" #left " == " #right ")"}
+#define IF_NOT_EQUAL(left, right) stud::PanicExpr {left != right, "!(" #left " == " #right ")"}
 
 _STD_API_END
 

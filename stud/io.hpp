@@ -1,6 +1,6 @@
 
 
-#ifndef _STUD_IO
+#ifndef _STD_IO
 
 #include <format>
 #include <iostream>
@@ -54,5 +54,5 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept {
 
 _STD_API_END
 
-#define _STUD_IO
+#define _STD_IO
 #endif

@@ -140,6 +140,20 @@ public:
         return iterator(data() + N);
     }
 
+    /// <summary>
+    /// Linear search for an item that matches the parameter.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    _NODISCARD _STD_API bool contains(const T& item) const {
+        for (std::size_t i = 0; i < this->size(); ++i) {
+            const T& _This_item = this->at(i);
+            if (_This_item == item)
+                return true;
+        }
+        return false;
+    }
+
     _STD_API std::string to_string()
     {
         auto result = std::string{"["};
