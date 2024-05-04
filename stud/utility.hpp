@@ -145,7 +145,32 @@ auto make_complex_version(size_t major, size_t minor, size_t others, std::string
     return Version(major, minor, others, branch);
 }
 
+template <class T>
+_STD_API void swap(T& left, T& right) noexcept {
+    // Explicit type to force a copy.
+    T _Tmp = left;
+    left = _Tmp;
+    right = _Tmp;
+}
 
+template <class T, class U = T>
+_STD_API T exchange(T& original, U&& new_value) noexcept {
+    // Explicit type to force a copy.
+    T _Old = original;
+    original = move(new_value);
+    return _Old;
+}
+
+template <class T>
+_STD_API auto forward(std::remove_reference_t<T>& type) noexcept {
+    return static_cast<T&&>(type);
+}
+
+template <class T>
+_STD_API const T& as_const(T& r) noexcept { return r; }
+
+template <class T>
+_STD_API const T* as_const(T* r) noexcept { return r; }
 
 _STD_API_END
 
