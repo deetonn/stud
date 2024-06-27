@@ -4,6 +4,7 @@
 
 #include <format>
 #include <iostream>
+#include <filesystem>
 
 #include "forward.hpp"
 
@@ -51,6 +52,8 @@ std::string
 format(const std::format_string<Args...> fmt, Args&&... args) noexcept {
     return std::format<Args...>(fmt, std::forward<Args>(args)...);
 }
+
+namespace fs = std::filesystem;
 
 _STD_API_END
 

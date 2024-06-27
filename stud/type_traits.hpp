@@ -76,6 +76,9 @@ class is_pointer<T*> : public true_type {};
 template<class T>
 _STD_API static bool is_pointer_v = is_pointer<T>::value;
 
+template <class T>
+_STD_API static bool is_class_v = __is_class(T);
+
 _STD_API_END
 
 #define _STD_TYPE_TRAITS

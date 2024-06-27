@@ -32,7 +32,7 @@ enumerate(Container& container) noexcept {
     return result;
 }
 
-_NODISCARD 
+_STD_API 
 size_t 
 size(const auto& container) noexcept {
     return container.size();
@@ -42,7 +42,7 @@ template<class T>
 _NODISCARD 
 _STD_API 
 T 
-clone(Duplicate<T> duplicate) noexcept {
+clone(const Duplicate<T>& duplicate) noexcept {
     return duplicate.clone();
 }
 

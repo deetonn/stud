@@ -2,6 +2,7 @@
 #ifndef _STD_FORWARD_HPP
 
 #define _STD_API_BEGIN namespace stud {
+#define _STD_MATH_API_BEGIN namespace stud::math {
 #define _STD_UNSTABLE_API_BEGIN namespace stud::unsafe {
 #define _STD_DETAIL_API namespace stud::__detail {
 #define _STD_API_END }

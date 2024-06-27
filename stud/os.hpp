@@ -246,5 +246,9 @@ void free(T* ptr) noexcept {
 
 _STD_API_END
 
+#if defined(_WIN32) || defined(_WIN64)
+#include "stud_windefs.h"
+#endif
+
 #define _STD_OS
 #endif

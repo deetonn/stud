@@ -88,7 +88,6 @@ public:
         return ptr_;
     }
 private:
-
     _STD_API void _Verify_state() noexcept {
         if (!cap_) {
             // we are not yet initialized, we should allocate

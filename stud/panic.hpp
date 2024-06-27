@@ -70,11 +70,11 @@ public:
 
 template<typename ...Ts>
 static constexpr __forceinline void panic(
-    PanicExpr condition,
+    const PanicExpr& condition,
     const std::format_string<Ts...> fmt,
     Ts&&... args
 ) noexcept {
-    if (condition.get_expression()) {
+    if (condition.get_expression()) [[unlikely]] {
         auto message = std::format<Ts...>(fmt, std::forward<Ts>(args)...);
         __panic(condition.location(), "the expression \"{}\" failed.\nmessage: {}", condition.get_view(), message);
     }
@@ -83,10 +83,16 @@ static constexpr __forceinline void panic(
 #define IF(condition) stud::PanicExpr {condition, #condition}
 #define NOT(condition) stud::PanicExpr { !(condition), "!(" #condition ")" }
 #define IF_NOT(condition) NOT(condition)
-#define ALWAYS(...) stud::PanicExpr { !false, "(Debug-Assertion)" }
+
+#define CUSTOM(expr, message) stud::PanicExpr {(expr), message}
+
+#define ALWAYS(...) CUSTOM(!false, "This panic always hits.")
 
 #define IF_EQUAL(left, right) stud::PanicExpr {left == right, "(" #left " == " #right ")"}
 #define IF_NOT_EQUAL(left, right) stud::PanicExpr {left != right, "!(" #left " == " #right ")"}
+
+#define IF_GREATER(left, right) stud::PanicExpr {left > right, "(" #left " > " #right ")"}
+#define IF_LESSER(left, right) stud::PanicExpr {left < right, "(" #left " > " #right ")"}
 
 _STD_API_END
 

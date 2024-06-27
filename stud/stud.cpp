@@ -1,12 +1,12 @@
 #include "all"
 
 #include <cstdio>
+#include <filesystem>
 
 using namespace stud;
 
 int main(int argc, char** argv)
 {
-	auto s = __detail::string<char>("hello, world!");
-	s.append(" ... Bye");
-	eprintln("{}", s.data());
+	auto set = BitSet<640>{};
+	auto storage = as_const(set.storage());
 }

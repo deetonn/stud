@@ -16,7 +16,6 @@ _STD_DETAIL_API
 template<class _Ty>
 class _Default_destroy {
 public:
-    // do nothing, let the constructor happen by default.
     _STD_API static void destruct(_Ty* ptr) noexcept {
         if (!ptr) return;
         delete ptr;
@@ -59,9 +58,26 @@ protected:
 template<class T, class Deleter>
 using _Standard_object_control = _SOC_base<T, Deleter>;
 
+template <class _Ty>
+class _Allocator {
+public:
+    constexpr _Ty* allocate(const std::size_t n) noexcept {
+        if (n == 0) return nullptr;
+        return reinterpret_cast<_Ty*>(::malloc(sizeof(_Ty) * n));
+    }
+
+    constexpr void deallocate(const _Ty* mem) noexcept {
+        if (mem == nullptr) return;
+        ::free(mem);
+    }
+};
+
 _STD_API_END
 
 _STD_API_BEGIN
+
+template <class T>
+using allocator = _DETAIL _Allocator<T>;
 
 template<class T>
 using DefaultDelete = _DETAIL _Default_destroy<T>;
@@ -168,8 +184,6 @@ inline BOOL is_heap_allocated(void* ptr) noexcept {
     auto stack_end_address = 
         base + reinterpret_cast<uintptr_t>(*(stack_frames + (frame_count - 1)));
 
-    eprintln("Range: (0x{:x} -> 0x{:x}) Value: 0x{:x}", stack_begin_address, stack_end_address, (uintptr_t)ptr);
-
     if (address >= stack_begin_address && address <= stack_end_address)
         return false;
 
@@ -238,6 +252,8 @@ MutexProtectedAllocation<T> mpalloc(std::optional<T> initializer = std::nullopt)
     }
     return MutexProtectedAllocation<T>();
 }
+
+#define readreg(reg, value) asm("movl %%" reg ", %0" : "=r"(value) :)
 
 _STD_API_END
 

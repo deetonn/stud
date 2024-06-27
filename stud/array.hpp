@@ -10,45 +10,62 @@
 #include "stddef.hpp"
 #include "concept.hpp"
 #include "type_traits.hpp"
+#include "iterator.hpp"
 
 _STD_API_BEGIN
 
-template<class _Ty, size_t _Size>
-class _Array_iterator {
-private:
-    _Ty* _ptr;
-public:
-    using difference_type = ptrdiff;
-    using value_type = _Ty;
-    using pointer = _Ty*;
-    using reference = _Ty&;
-    using iterator_category = std::forward_iterator_tag;
+template <class T, size_t N>
+class Array;
 
-    _STD_API _Array_iterator(_Ty* pointer) noexcept
-        : _ptr{ pointer }
-    {}
-
-    _STD_API _Array_iterator& operator++() noexcept {
-        _ptr++;
-        return *this;
-    }
-    _STD_API _Array_iterator operator++(int) noexcept {
-        auto ret = *this;
-        (*this)++;
-        return ret;
-    }
-
-    _STD_API bool operator==(_Array_iterator other) const noexcept {
-        return _ptr == other._ptr;
-    }
-    _STD_API bool operator!=(_Array_iterator other) const noexcept {
-        return _ptr != other._ptr;
-    }
-
-    _Ty& operator*() noexcept {
-        return *_ptr;
-    }
-};
+//template<class _Ty, std::size_t _Size>
+//class iterator<Array<_Ty, _Size>> {
+//private:
+//    _Ty* _ptr;
+//public:
+//    using difference_type = ptrdiff;
+//    using value_type = _Ty;
+//    using pointer = _Ty*;
+//    using reference = _Ty&;
+//    using iterator_category = std::forward_iterator_tag;
+//
+//    _STD_API _Array_iterator(_Ty* pointer) noexcept
+//        : _ptr{ pointer }
+//    {}
+//
+//    _STD_API _Array_iterator& operator++() noexcept {
+//        _ptr++;
+//        return *this;
+//    }
+//    _STD_API _Array_iterator operator++(int) noexcept {
+//        auto ret = *this;
+//        (*this)++;
+//        return ret;
+//    }
+//
+//    _STD_API bool operator==(_Array_iterator other) const noexcept {
+//        return _ptr == other._ptr;
+//    }
+//    _STD_API bool operator!=(_Array_iterator other) const noexcept {
+//        return _ptr != other._ptr;
+//    }
+//
+//    _Ty& operator*() noexcept {
+//        return *_ptr;
+//    }
+//};
+//
+//template <class _Ty, std::size_t _Size>
+//class reverse_iterator<Array<_Ty, _Size>> {
+//    _Ty* back;
+//public:
+//    using difference_type = ptrdiff;
+//    using value_type = _Ty;
+//    using pointer = _Ty*;
+//    using reference = _Ty&;
+//    using iterator_category = std::forward_iterator_tag;
+//
+//
+//};
 
 template<class T, size_t N>
 class Array : public Duplicate<Array<T, N>>
@@ -61,7 +78,7 @@ private:
 public:
     static constexpr size_t SIZE = N;
 
-    using iterator = _Array_iterator<T, N>;
+    using iterator = iterator<Array<T, N>>;
     using value_type = T;
 
     _STD_API Array() = default;

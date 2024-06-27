@@ -134,12 +134,16 @@
   <ItemGroup>
     <ClInclude Include="algorithm.hpp" />
     <ClInclude Include="array.hpp" />
+    <ClInclude Include="bits.hpp" />
     <ClInclude Include="clone.hpp" />
     <ClInclude Include="concept.hpp" />
     <ClInclude Include="defer.hpp" />
     <ClInclude Include="forward.hpp" />
     <ClInclude Include="identity.hpp" />
     <ClInclude Include="io.hpp" />
+    <ClInclude Include="iterator.hpp" />
+    <ClInclude Include="logging.hpp" />
+    <ClInclude Include="math.hpp" />
     <ClInclude Include="memory.hpp" />
     <ClInclude Include="option.hpp" />
     <ClInclude Include="os.hpp" />
@@ -148,6 +152,7 @@
     <ClInclude Include="stack.hpp" />
     <ClInclude Include="stddef.hpp" />
     <ClInclude Include="string.hpp" />
+    <ClInclude Include="stud_windefs.h" />
     <ClInclude Include="time.hpp" />
     <ClInclude Include="type_traits.hpp" />
     <ClInclude Include="utility.hpp" />

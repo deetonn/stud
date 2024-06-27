@@ -172,6 +172,10 @@ _STD_API const T& as_const(T& r) noexcept { return r; }
 template <class T>
 _STD_API const T* as_const(T* r) noexcept { return r; }
 
+_STD_INLINE uintptr_t ptrval(void* anything) noexcept {
+    return reinterpret_cast<uintptr_t>(anything);
+}
+
 _STD_API_END
 
 #define _STD_UTILITY

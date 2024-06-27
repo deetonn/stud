@@ -67,6 +67,7 @@ _STD_API To* force_cast(From* data, To* storage = NULL) noexcept {
         return reinterpret_cast<To*>(reinterpret_cast<char*>(data));
     }
     else {
+        panic(IF(storage == NULL), "This cast requires pre-existing storage.");
         // The type we are converting to is smaller
         memcpy_unsafe(storage, data, sizeof(To));
         return storage;
@@ -74,8 +75,6 @@ _STD_API To* force_cast(From* data, To* storage = NULL) noexcept {
 
     return NULL;
 }
-
-
 
 _STD_API_END
 

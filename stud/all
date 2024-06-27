@@ -19,6 +19,9 @@
 #include "type_traits.hpp"
 #include "time.hpp"
 #include "string.hpp"
+#include "math.hpp"
+#include "logging.hpp"
+#include "bits.hpp"
 
 _STD_API_BEGIN
 
